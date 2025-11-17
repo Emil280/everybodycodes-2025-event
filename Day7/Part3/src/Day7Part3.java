@@ -11,7 +11,7 @@ public class Day7Part3 {
     static String tracker = "";
     static int minLength = 7;
     static int maxLength = 11;
-    static Set<String> names = new HashSet<>();
+    static HashSet<String> names = new HashSet<>();
     public static void main(String[] args) {
         try {
             BufferedReader myReader = new BufferedReader(new FileReader(Path.of("Day7\\Part3\\src\\Input.txt").toString()));
@@ -27,7 +27,7 @@ public class Day7Part3 {
             }
 
             for (int i = 0; i < prefixes.length; i++) {
-                if (checkPrefix(prefixes[i])) {
+                if (checkPrefix(prefixes[i]) && !names.contains(prefixes[i])) {
                     checkExtensions(prefixes[i]);
                 }
             }
@@ -57,11 +57,12 @@ public class Day7Part3 {
     }
 
     public static void checkExtensions(String prefix){
-        if (prefix.length() > 11){
+
+        if (prefix.length() > maxLength){
             return;
         }
 
-        if (prefix.length() >= 7){
+        if (prefix.length() >= minLength){
             names.add(prefix);
         }
 
